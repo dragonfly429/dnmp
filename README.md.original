@@ -1,20 +1,37 @@
-本项目fork自 yeszao/dnmp
+DNMP（Docker + Nginx + MySQL + PHP7/5 + Redis）是一款全功能的**LNMP一键安装程序**。
 
-我改一些配置适用于自己使用
+**[[ENGLISH]](README-en.md)**
 
-环境要求：
-1.
+DNMP项目特点：
+1. `100%`开源
+2. `100%`遵循Docker标准
+3. 支持**多版本PHP**共存，可任意切换（PHP5.4、PHP5.6、PHP7.2)
+4. 支持绑定**任意多个域名**
+5. 支持**HTTPS和HTTP/2**
+6. **PHP源代码、MySQL数据、配置文件、日志文件**都可在Host中直接修改查看
+7. 内置**完整PHP扩展安装**命令
+8. 默认安装`pdo_mysql`、`redis`、`xdebug`、`swoole`等常用热门扩展，拿来即用
+9. 带有phpmyadmin和phpredisadmin数据库在线管理程序
+10. 实际项目中应用，确保`100%`可用
+11. 一次配置，**Windows、Linux、MacOs**皆可用
 
-特性：
 
-1. 支持**多版本PHP**共存，可任意切换（PHP5.4、PHP5.6、PHP7.2)
-2. 支持绑定**任意多个域名**
-3. 支持**HTTPS和HTTP/2**
-4. **PHP源代码、MySQL数据、配置文件、日志文件**都可在Host中直接修改查看
-5. 默认安装`pdo_mysql`、`redis`、`xdebug`、`swoole`等常用热门扩展，拿来即用
-6. 带有phpmyadmin和phpredisadmin数据库在线管理程序
-
-
+# 目录
+- [1.目录结构](#1目录结构)
+- [2.快速使用](#2快速使用)
+- [3.切换PHP版本](#3切换php版本)
+- [4.添加快捷命令](#4添加快捷命令)
+- [5.使用Log](#5使用log)
+    - [5.1 Nginx日志](#51-nginx日志)
+    - [5.2 PHP-FPM日志](#52-php-fpm日志)
+    - [5.3 MySQL日志](#53-mysql日志)
+- [6.使用composer](#6使用composer)
+- [7.数据库管理](#7数据库管理)
+    - [7.1 phpMyAdmin](#71-phpmyadmin)
+    - [7.2 phpRedisAdmin](#72-phpredisadmin)
+- [8.在正式环境中安全使用](#8在正式环境中安全使用)
+- [9.常见问题](#9常见问题)
+    - [9.1 如何在PHP代码中使用curl？](#91-如何在php代码中使用curl)
 
 
 ## 1.目录结构
@@ -27,17 +44,16 @@
 │   ├── mysql.cnf           MySQL用户配置文件
 │   ├── php-fpm.conf        PHP-FPM配置文件（部分会覆盖php.ini配置）
 │   └── php.ini             PHP默认配置文件
+├── Dockerfile              PHP镜像构建文件
 ├── extensions              PHP扩展源码包
 ├── log                     Nginx日志目录
 ├── mysql                   MySQL数据目录
 ├── www                     PHP代码目录
-├── Dockerfile              具体PHP镜像构建文件,由docker-compose.yml调用
-├── .dockerignore 			用dockerfile build的时候 忽略的文件
-├── docker-composer.yml 	docker-dompose配置文件
-├── .env.sample 			定义一些变量，由docker-compose.yml调用
 └── source.list             Debian源文件
 ```
+结构示意图：
 
+![Demo Image](./dnmp.png)
 
 
 ## 2.快速使用
@@ -237,3 +253,5 @@ Redis连接信息如下：
 
 ## License
 MIT
+
+
